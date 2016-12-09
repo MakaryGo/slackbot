@@ -1,4 +1,37 @@
-Kalendarium koła - zgłoszenia:
+
+<?php
+$servername = "sql7.freemysqlhosting.net";
+$username = "sql7148581";
+$password = "yvpdnqEbah";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully";
+?>
+
+function pokaz(){
+$sql = "SELECT Cat_NAME, Cat_ALIAS, Cat_Opis FROM Categories";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "Alias:" . $row["Cat_ALIAS"]. " - Nazwa: " . $row["Cat_NAME"]. " - " . $row["Cat_OPIS"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+
+}
+
+/*Kalendarium koła - zgłoszenia:
 https://goo.gl/forms/d8g8SRxABy8A9MQD3 
 Karta Praw LGBT+
 Raport: sytuacja prawna osób transpłciowych w Polsce:
@@ -64,3 +97,4 @@ http://kobieta.wp.pl/to-nie-jest-tradycyjna-rodzina-kuriozalne-zadanie-na-probne
 
 http://queer.pl/news/198478/jan-duda-o-homoseksualizmie
 
+*/
